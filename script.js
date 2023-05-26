@@ -18,3 +18,19 @@ for (let i = 0; i < 16; i++) {
 
   container.appendChild(columnDiv);
 }
+
+const hoverDivs = document.querySelectorAll(".hoverDiv")
+
+hoverDivs.forEach(div => {
+  div.addEventListener("mouseenter", () => {
+    div.style.transition = ""
+    div.style.backgroundColor = "black"
+  })
+})
+
+hoverDivs.forEach(div => {
+  div.addEventListener("mouseleave", () => {
+    div.style.transition = "all 1s"
+    div.style.backgroundColor = ""
+  })
+})

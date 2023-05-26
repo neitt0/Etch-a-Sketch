@@ -24,10 +24,5 @@ html {
 /* JS divs */
 .hoverDiv {
   background-color: white;
-  transition: all 1s ease-out;
   flex: 1;
-}
-
-.hoverDiv:hover {
-  background-color: black;
 }
