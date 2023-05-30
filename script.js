@@ -1,13 +1,19 @@
 const container = document.querySelector(".container");
 
-const button = document.querySelector("button");
+const gridSizeRequest = document.querySelector(".gridSizeRequest");
 let gridSize = 16;
+
+const clearButton = document.querySelector(".clear")
 
 // INITIALIZATION
 createGrid(gridSize);
 
-// BUTTON FUNCTIONALITY
-button.addEventListener("click", () => {
+clearButton.addEventListener("click", () => {
+  createGrid(gridSize);
+})
+
+// gridSizeRequest FUNCTIONALITY
+gridSizeRequest.addEventListener("click", () => {
   gridSize = prompt("Enter your desired grid size", 16);
 
   if (gridSize > 100) {
@@ -46,33 +52,29 @@ function createGrid(size) {
     container.appendChild(columnDiv);
   }
 
-  // HOVER
   
-  const hoverDivs = document.querySelectorAll(".hoverDiv");
-  
-  container.addEventListener("mouseenter", () => {
-    let colorValue = getRandomNum(0, 360);
-    let saturation = 100;
-    let lightness = 50;
-
-    hoverDivs.forEach((div) => {
-      
-      div.addEventListener("mouseenter", () => {
-        let color = `hsl(${colorValue}, ${saturation}%, ${lightness}%)`
-        
-        div.style.transition = "";
-        div.style.backgroundColor = color;
-
-        saturation -= 2;
-        lightness -= 1;
-      });
-    });
-
-    hoverDivs.forEach((div) => {
-      div.addEventListener("mouseleave", () => {
-        div.style.transition = "all 5s";
-        div.style.backgroundColor = "";
-      });
-    });
-  });
 }
+
+// HOVER
+const hoverDivs = document.querySelectorAll(".hoverDiv");
+
+container.addEventListener("mouseenter", () => {
+  let colorValue = getRandomNum(0, 360);
+  let saturation = 100;
+  let lightness = 50;
+
+  hoverDivs.forEach((div) => {
+    div.addEventListener("mouseenter", () => {
+      let color = `hsl(${colorValue}, ${saturation}%, ${lightness}%)`
+      div.style.transition = "";
+      div.style.backgroundColor = color;
+      saturation -= .5;
+      lightness -= .2;
+    });
+
+    // div.addEventListener("mouseleave", () => {
+    //   div.style.transition = "all 3s";
+    //   div.style.backgroundColor = "";
+    // });
+  });
+});
