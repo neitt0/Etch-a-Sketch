@@ -10,6 +10,7 @@ createGrid(gridSize);
 
 clearButton.addEventListener("click", () => {
   createGrid(gridSize);
+  allHoverDiv = document.querySelectorAll(".hoverDiv")
 })
 
 // gridSizeRequest FUNCTIONALITY
@@ -20,7 +21,9 @@ gridSizeRequest.addEventListener("click", () => {
     gridSize = 100;
     alert("Your size has been capped to 100 due to performance issues");
   } else if (!gridSize) gridSize = 16;
+  
   createGrid(gridSize);
+  allHoverDiv = document.querySelectorAll(".hoverDiv")
 });
 
 // RANDOM NUMBER GEN
@@ -56,14 +59,14 @@ function createGrid(size) {
 }
 
 // HOVER
-const hoverDivs = document.querySelectorAll(".hoverDiv");
+let allHoverDiv = document.querySelectorAll(".hoverDiv");
 
 container.addEventListener("mouseenter", () => {
   let colorValue = getRandomNum(0, 360);
   let saturation = 100;
   let lightness = 50;
 
-  hoverDivs.forEach((div) => {
+  allHoverDiv.forEach((div) => {
     div.addEventListener("mouseenter", () => {
       let color = `hsl(${colorValue}, ${saturation}%, ${lightness}%)`
       div.style.transition = "";
@@ -71,6 +74,8 @@ container.addEventListener("mouseenter", () => {
       saturation -= .5;
       lightness -= .2;
     });
+
+    // Pixel disappearing over 3s
 
     // div.addEventListener("mouseleave", () => {
     //   div.style.transition = "all 3s";
